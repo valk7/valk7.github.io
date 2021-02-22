@@ -72,12 +72,12 @@ var xtra_data,
  flash_partition='xxxxCELL_FS_IOS:BUILTIN_FLSH1',
  filesystem='CELL_FS_FAT',
  mount_path='/dev_rewrite',
- fail_msg_frag="<h1><span style='color:red'>Exploit initialization failed!</h1></span>",
- progress_msg_frag1="<h1>Initializing... ",
+ fail_msg_frag="<h1><span style='color:red'>Eksploitasi inisialisasi gagal!</h1></span>",
+ progress_msg_frag1="<h1>Memulai ... ",
  progress_msg_frag2='%</h1>',
  toc_addr=7296344;
 
-document.write('<html><title>PS3Xploit - HEN Installer</title><div id="result"></div><div id="exploit"></div><div id="trigger"></div></html>');
+document.write('<html><title>HEN 3.0.2 Plus+</title><div id="result"></div><div id="exploit"></div><div id="trigger"></div></html>');
 var ua=navigator.userAgent,
  fwv=ua.substring(ua.indexOf("5.0 (")+19,ua.indexOf(") Apple"));
 if(fwv==="4.82"){
@@ -204,13 +204,13 @@ var xtra_data,
  flash_partition='xxxxCELL_FS_IOS:BUILTIN_FLSH1',
  filesystem='CELL_FS_FAT',
  mount_path='/dev_rewrite',
- fail_msg_frag="<h1><span style='color:red'>Exploit initialization failed!</h1></span>",
- progress_msg_frag1="<h1>Initializing... ",
+ fail_msg_frag="<h1><span style='color:red'>Eksploitasi inisialisasi gagal!</h1></span><h2>1. Tekan select lalu Add Bookmark<br>2. Keluar dari Browser kemudian tunggu beberapa detik, lalu masuk lagi ke Browser<br>3. Tekan select buka website yang tadi diBookmark, tunggu sampai proses selesai<br>4. Jika masih gagal silahkan restart dahulu PS3 anda</h2>",
+ progress_msg_frag1="<h1>Memulai... ",
  progress_msg_frag2='%</h1>',
  write_file = "/dev_rewrite/vsh/resource/explore/xmb/category_network.xml",
  baseURL = window.location.href.replace(/[^/]*$/, ''),
- write_file_contents='<?xml version="1.0" encoding="UTF-8"?><XMBML version="1.0"><View id="root"><Attributes><Table key="hen"><Pair key="focus_priority"><String>-1</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="hen" attr="hen" src="#hen_link"/><Query class="type:x-xmb/folder-pixmap" key="seg_premo" src="sel://localhost/nopremo?category_network.xml#seg_premo"/><Query class="type:x-xmb/folder-pixmap" key="seg_browser" src="#seg_browser"/></Items></View><View id="seg_premo"><Items><Item class="type:x-xmb/xmlpremo" key="PRemo" /></Items></View><View id="seg_browser"><Attributes><Table key="browser"><Pair key="icon_rsc"><String>tex_browser</String></Pair><Pair key="icon_notation"><String>WNT_XmbItemBrowser</String></Pair><Pair key="title_rsc"><String>msg_browser</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlwebbrowser" key="browser" attr="browser" /></Items></View><View id="hen_link"><Attributes><Table key="ps3hen_main"><Pair key="icon_rsc"><String>item_tex_Players</String></Pair><Pair key="title"><String>ALL_HEN_TODOS_OS HEN</String></Pair><Pair key="info"><String>Zmod_Store</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="ps3hen_main" attr="ps3hen_main" src="#ps3hen_pkg" /></Items></View><View id="ps3hen_pkg"><Attributes><Table key="ps3hen_link"><Pair key="info"><String>net_package_install</String></Pair><Pair key="pkg_src"><String>https://github.com/come200007/come200007.github.io/raw/main/HEN_3.0.2.pkg_signed.pkg</String></Pair><Pair key="pkg_src_qa" ><String>https://github.com/come200007/come200007.github.io/raw/main/HEN_3.0.2.pkg_signed.pkg</String></Pair><Pair key="content_name"><String>msg_install</String></Pair><Pair key="content_id"><String>CUSTOM-INSTALLER_00-0000000000000000</String></Pair><Pair key="prod_pict_path"><String>'+baseURL+'hendl.png</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlnpsignup" key="ps3hen_link" attr="ps3hen_link" /></Items></View></XMBML><!-- o --> '; 
-document.write('<html><title>PS3Xploit - HEN Installer</title><div id="result"></div><div id="exploit"></div><div id="trigger"></div></html>');
+ write_file_contents='<?xml version="1.0" encoding="UTF-8"?><XMBML version="1.0"><View id="root"><Attributes><Table key="hen"><Pair key="focus_priority"><String>-1</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="hen" attr="hen" src="#hen_link"/><Query class="type:x-xmb/folder-pixmap" key="seg_premo" src="sel://localhost/nopremo?category_network.xml#seg_premo"/><Query class="type:x-xmb/folder-pixmap" key="seg_browser" src="#seg_browser"/></Items></View><View id="seg_premo"><Items><Item class="type:x-xmb/xmlpremo" key="PRemo" /></Items></View><View id="seg_browser"><Attributes><Table key="browser"><Pair key="icon_rsc"><String>tex_browser</String></Pair><Pair key="icon_notation"><String>WNT_XmbItemBrowser</String></Pair><Pair key="title_rsc"><String>msg_browser</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlwebbrowser" key="browser" attr="browser" /></Items></View><View id="hen_link"><Attributes><Table key="ps3hen_main"><Pair key="icon_rsc"><String>item_tex_Players</String></Pair><Pair key="title"><String>Install HEN</String></Pair><Pair key="info"><String>HEN Version 3.0.2 Plus+</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="ps3hen_main" attr="ps3hen_main" src="#ps3hen_pkg" /></Items></View><View id="ps3hen_pkg"><Attributes><Table key="ps3hen_link"><Pair key="info"><String>net_package_install</String></Pair><Pair key="pkg_src"><String>https://github.com/come200007/come200007.github.io/raw/main/HEN_3.0.2.pkg_signed.pkg</String></Pair><Pair key="pkg_src_qa" ><String>https://github.com/come200007/come200007.github.io/raw/main/HEN_3.0.2.pkg_signed.pkg</String></Pair><Pair key="content_name"><String>msg_install</String></Pair><Pair key="content_id"><String>CUSTOM-INSTALLER_00-0000000000000000</String></Pair><Pair key="prod_pict_path"><String>'+baseURL+'hendl.png</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlnpsignup" key="ps3hen_link" attr="ps3hen_link" /></Items></View></XMBML><!-- o --> '; 
+document.write('<html><title>HEN 3.0.2 Plus+</title><div id="result"></div><div id="exploit"></div><div id="trigger"></div></html>');
 function memcpy(dest,src,len)
 {
  return callsub(gadget8_addr,dest,src,len,0,0,0,0,0,0,0x70);
@@ -393,7 +393,7 @@ function checkMemory(address, size, len)
 function trigger(exploit_addr){
  if(document.getElementById('trigger')){document.getElementById("trigger").innerHTML = -parseFloat("NAN(ffffe" + exploit_addr.toString(16) + ")");}
  if (document.getElementById('trigger').innerHTML.indexOf("NaN") != -1) {
-  document.write("<html><h1><span style='color:red'>You must install Hybrid Firmware (HFW) before installing HEN!</h1></span></html>");
+  document.write("<html><h1><span style='color:blue'>Anda harus menginstal Hybrid Firmware (HFW) sebelum menginstal HEN!</h1></span></html>");
   return;
  }
 }
@@ -605,7 +605,7 @@ function initROP(init)
 function triggerX()
 {
  setTimeout(trigger,100,jump_1_addr);
- setTimeout(showResult,2000,"<h1>How to install HEN</h1><h2>1. Close browser<br>2. Open Remote Play and quit immediately<br>3. Use new icon to download and install HEN</span><br>4. Reboot after installation</h2>");
+ setTimeout(showResult,2000,"<h1>Bagaimana cara menginstal HEN :</h1><h2>1. Tutup browser<br>2. Buka Remote Play dan segera keluar<br>3. Gunakan ikon baru untuk mengunduh dan menginstal HEN</span><br>4. Reboot setelah instalasi</h2>");
  t_out=0;
  total_loops=0;
 }
