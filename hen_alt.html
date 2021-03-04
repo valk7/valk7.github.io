@@ -1,55 +1,7 @@
 <html lang="en">
   <body>
     <script>
-      var xtra_data,
-        stack_frame,
-        jump_2,
-        jump_1,
-        xtra_data_addr,
-        stack_frame_addr,
-        jump_2_addr,
-        jump_1_addr,
-        index_key = "DA7D4B5E499A4F53B1C1A14A7484443B",
-        start_x = "xxxx",
-        offset_array = [],
-        t_out = 0,
-        ps3xploit_ecdsa_key_addr = 0,
-        index_key_addr = 0,
-        search_max_threshold = 73400320,
-        search_base = 2148532224,
-        mbytes = 1048576,
-        search_size = 2 * mbytes,
-        search_base_off = 0,
-        search_size_ext = 0,
-        gtemp_addr = 2365587456,
-        total_loops = 0,
-        max_loops = 20,
-        frame_fails = 0,
-        sp_exit = 2413354176,
-        ffs = 4294967295,
-        dbyte41 = 16705,
-        dbyte00 = 0,
-        byte_size = 1,
-        hword_size = 2,
-        word_size = 4,
-        dword_size = 8,
-        stat_size_offset = 40,
-        toc_addr = 7296336,
-        gadget1_addr = 620036,
-        gadget8_addr = 131072,
-        gadget_mod1_addr = 6352696,
-        gadget_mod2_addr = 80756,
-        gadget_mod3_addr = 757248,
-        gadget_mod4a_addr = 890500,
-        gadget_mod7_addr = 108204,
-        gadget_mod8_addr = 2862264,
-        gadget_mod4b_addr = 0x42c778,
-        gadget_mod4c_addr = 0x054af0,
-        gadget_mod15_addr = 0x39d038,
-        gadget_mod12_addr = 0x63315c,
-        gadget_mod9_addr = 0x010b20,
-        ua = navigator.userAgent,
-        fwv = ua.substring(ua.indexOf("5.0 (") + 19, ua.indexOf(") Apple")),
+      var xtra_data,stack_frame,jump_2,jump_1,xtra_data_addr,stack_frame_addr,jump_2_addr,jump_1_addr,index_key="DA7D4B5E499A4F53B1C1A14A7484443B",start_x="xxxx",offset_array=[],t_out=0,ps3xploit_ecdsa_key_addr=0,index_key_addr=0,search_max_threshold=73400320,search_base=2148532224,mbytes=1048576,search_size=2*mbytes,search_base_off=0,search_size_ext=0,gtemp_addr=2365587456,total_loops=0,max_loops=20,frame_fails=0,sp_exit=2413354176,ffs=4294967295,dbyte41=16705,dbyte00=0,byte_size=1,hword_size=2,word_size=4,dword_size=8,stat_size_offset=40,toc_addr=7296336,gadget1_addr=620036,gadget8_addr=131072,gadget_mod1_addr=6352696,gadget_mod2_addr=80756,gadget_mod3_addr=757248,gadget_mod4a_addr=890500,gadget_mod7_addr=108204,gadget_mod8_addr=2862264,gadget_mod4b_addr=0x42c778,gadget_mod4c_addr=0x054af0,gadget_mod15_addr=0x39d038,gadget_mod12_addr=0x63315c,gadget_mod9_addr=0x010b20,ua=navigator.userAgent,fwv=ua.substring(ua.indexOf("5.0 (")+ 19,ua.indexOf(") Apple")),
         // dlcount = 1,
         progress_msg_frag1 = "<h1>Enabling <s>H\u24d4N</s> ",
         progress_msg_frag2 = "%</h1>",
@@ -679,36 +631,7 @@
           r31in = gtemp_addr;
         }
 
-        return (
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod1_addr) +
-          fill_by_16bytes(0x50, dbyte41) +
-          fill_by_4bytes(0xc, dbyte41) +
-          hexw2bin(r11) +
-          hexw2bin(r10) +
-          hexw2bin(r8) +
-          hexw2bin(r7) +
-          hexw2bin(r6) +
-          hexw2bin(r5) +
-          hexw2bin(r4) +
-          fill_by_4bytes(0x4, dbyte41) +
-          hexw2bin(r9) +
-          fill_by_16bytes(0x20, dbyte41) +
-          hexdw2bin(r3) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(r31in) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(sub) +
-          fill_by_16bytes(sub_frame_size - min_stack_size, dbyte00) +
-          hexdw2bin(r31out) +
-          hexdw2bin(sp_exit) +
-          fill_by_8bytes(0x8, dbyte41)
-        );
+        return (hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xc,dbyte41)+hexw2bin(r11)+hexw2bin(r10)+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31in)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(sub)+fill_by_16bytes(sub_frame_size-min_stack_size,dbyte00)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41));
       }
 
       function fillNbytes(nbytes, hex_val, N) {
@@ -1160,23 +1083,13 @@
       }
 
       function stack_frame_swap(new_stack_addr) {
-        return (
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          hexdw2bin(new_stack_addr) +
-          fill_by_8bytes(0x8, dbyte41) +
-          hexdw2bin(gadget_mod9_addr)
-        );
+        return (hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+hexdw2bin(new_stack_addr)+fill_by_8bytes(0x8,dbyte41)+hexdw2bin(gadget_mod9_addr));
       }
 
       function triggerX() {
         setTimeout(trigger, 1000, jump_1_addr);
-
         setTimeout(rop_exit_hen, 4500, "<b>H\u24d4N Failed!</b>");
-
         t_out = 0;
-
         total_loops = 0;
       }
 
